@@ -6,6 +6,11 @@ import {
 } from 'react-router-dom'
 import { Home } from './Home'
 import { Users } from './Users'
+import Amplify from 'aws-amplify'
+import awsconfig from './aws-exports'
+import { withAuthenticator } from 'aws-amplify-react'
+
+Amplify.configure(awsconfig)
 
 function App () {
   return (
@@ -22,4 +27,4 @@ function App () {
   )
 }
 
-export default App
+export default withAuthenticator(App, { usernameAttributes: 'email' })

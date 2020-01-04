@@ -1,0 +1,55 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-awscognitodemowebapp-local-204721-authRole",
+            "UnauthRoleArn": "arn:aws:iam::501360543632:role/amplify-awscognitodemowebapp-local-204721-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::501360543632:role/amplify-awscognitodemowebapp-local-204721-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-awscognitodemowebapp-local-204721-deployment",
+            "UnauthRoleName": "amplify-awscognitodemowebapp-local-204721-unauthRole",
+            "StackName": "amplify-awscognitodemowebapp-local-204721",
+            "StackId": "arn:aws:cloudformation:us-east-1:501360543632:stack/amplify-awscognitodemowebapp-local-204721/03b96c00-2e7b-11ea-825c-0a200f00c284",
+            "AmplifyAppId": "d2z66mko04sroc"
+        }
+    },
+    "hosting": {
+        "S3AndCloudFront": {
+            "service": "S3AndCloudFront",
+            "providerPlugin": "awscloudformation",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-awscognitodemowebapp-local-204721-deployment/amplify-cfn-templates/hosting/template.json",
+                "logicalId": "hostingS3AndCloudFront"
+            },
+            "lastPushTimeStamp": "2020-01-03T23:01:07.280Z",
+            "output": {
+                "S3BucketSecureURL": "https://awscognitodemowebapp-20200103204926-hostingbucket-local.s3.amazonaws.com",
+                "WebsiteURL": "http://awscognitodemowebapp-20200103204926-hostingbucket-local.s3-website-us-east-1.amazonaws.com",
+                "Region": "us-east-1",
+                "HostingBucketName": "awscognitodemowebapp-20200103204926-hostingbucket-local"
+            },
+            "lastPushDirHash": "sdhTFz44Z7jAW/Fy5IUJUYL82Tc="
+        }
+    },
+    "auth": {
+        "awscognitodemowebappd2b1d65e": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-awscognitodemowebapp-local-204721-deployment/amplify-cfn-templates/auth/awscognitodemowebappd2b1d65e-cloudformation-template.yml",
+                "logicalId": "authawscognitodemowebappd2b1d65e"
+            },
+            "lastPushTimeStamp": "2020-01-03T23:01:07.282Z",
+            "output": {
+                "AppClientSecret": "1lo0piei0b5cmja9omcn7o8itq6ti3umn2fhlo2oddlpkjn9qeqm",
+                "UserPoolId": "us-east-1_7eMekq1Uw",
+                "AppClientIDWeb": "16mnmfng1llqu6ai9jrjdqp7a6",
+                "AppClientID": "60tln2gl0sbtvj4pd74gkk1r55",
+                "IdentityPoolId": "us-east-1:172c1381-09d5-4464-8aae-cd57ceebb0f2",
+                "IdentityPoolName": "awscognitodemowebappd2b1d65e_identitypool_d2b1d65e__local",
+                "UserPoolName": "awscognitodemowebappd2b1d65e_userpool_d2b1d65e"
+            },
+            "lastPushDirHash": "uN7PkTpjfRSRO9/21r+2wcpDjSs="
+        }
+    }
+}
