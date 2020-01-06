@@ -24,7 +24,10 @@ Follow the questions of this cli
 amplify configure
 amplify add auth
 amplify push
+amplify publish
 ```
+
+**Itens created**
 
 After running everything some aws resources will be created
 
@@ -34,3 +37,9 @@ After running everything some aws resources will be created
   - Identity  Pool: awscognitodemowebappd2b1d65e_identitypool_d2b1d65e__local
 - S3: 2 buckets
 - CloudFormation: 3 itens
+
+**Running**
+
+After executing the command amplify push a browser url will be open
+
+After login you will see the JWT tokens
