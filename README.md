@@ -6,6 +6,8 @@ The CLI command do everything you need using cloud formation objects.
 
 I used https://aws-amplify.github.io/docs/js/authentication to create everything.
 
+Instructions for react: https://aws-amplify.github.io/docs/js/react
+
 ## How to run this code?
 
 **Setup your machine**
