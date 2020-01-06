@@ -5,7 +5,6 @@ import {
   Route
 } from 'react-router-dom'
 import { Home } from './Home'
-import { Users } from './Users'
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import { withAuthenticator } from 'aws-amplify-react'
@@ -16,9 +15,6 @@ function App () {
   return (
     <Router>
       <Switch>
-        <Route path='/users'>
-          <Users />
-        </Route>
         <Route path='/'>
           <Home />
         </Route>
