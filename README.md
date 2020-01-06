@@ -32,3 +32,5 @@ After running everything some aws resources will be created
   - User pool: awscognitodemowebappd2b1d65e_userpool_d2b1d65e-local
   - SMS Role: arn:aws:iam::501360543632:role/sns204721-local
   - Identity  Pool: awscognitodemowebappd2b1d65e_identitypool_d2b1d65e__local
+- S3: 2 buckets
+- CloudFormation: 3 itens
