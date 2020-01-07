@@ -14,6 +14,7 @@ Instructions for react: https://aws-amplify.github.io/docs/js/react
 
 ```javascript
 npm install -g @aws-amplify/cli
+npm install
 ```
 
 **Setup your project**
