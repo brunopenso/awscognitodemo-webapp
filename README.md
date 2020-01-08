@@ -60,6 +60,7 @@ On the Federation, let`s setup the facebook/google authenticator
   - Web application
   - Fill the Name
   - Save
+- Select the application name and add Authorized redirect URIs with the value https://<userpool_domainname>.auth.us-east-1.amazoncognito.com/oauth2/idpresponse
 - Back to cognito, create the google identity provider, fill clientId and secret and scope(profile email openid).
 - Hit Enable google
 - Go to attribute mapping and do the same as the Facebook
