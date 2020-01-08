@@ -6,7 +6,7 @@ export function Callback () {
   const [idToken, setIdToken] = useState('')
   const [accessToken, setAccessToken] = useState('')
   const [refreshToken, setRefreshToken] = useState('')
-
+  const [apiCallBody, setApiCallBody] = useState('click on the button above')
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     console.log(params.get('code'))
@@ -25,7 +25,6 @@ export function Callback () {
       }
     })
       .then(response => {
-        console.log(response.data)
         setIdToken(response.data.id_token)
         setAccessToken(response.data.access_token)
         setRefreshToken(response.data.refresh_token)
@@ -33,12 +32,29 @@ export function Callback () {
       .catch(err => console.log(err))
   }, [])
 
+  function callApi () {
+    axios({
+      method: 'get',
+      url: 'https://f0puh5ic21.execute-api.us-east-1.amazonaws.com/dev',
+      headers: {
+        Authorization: idToken
+      }
+    })
+      .then(response => {
+        console.log(response)
+        setApiCallBody(response.data.body)
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <div>
       <h2>This is the call back page</h2>
-      <h4>ID token: {idToken}</h4>
-      <h4>ACCESS token: {accessToken}</h4>
-      <h4>REFRESH token: {refreshToken}</h4>
+      <p>ID token: {idToken}</p>
+      <p>ACCESS token: {accessToken}</p>
+      <p>REFRESH token: {refreshToken}</p>
+      <button onClick={callApi}>Click to call a API</button>
+      <p>Result from the button {apiCallBody}</p>
     </div>
   )
 }

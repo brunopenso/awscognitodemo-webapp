@@ -67,6 +67,50 @@ On the Federation, let`s setup the facebook/google authenticator
   - Go to attribute mapping and do the same as the Facebook
   - Go to App Client Settings and enable google as a identity provider
 
+### Create a lambda code
+
+Go to the AWS Console and Create a lambda with name myRandomNumber with all default configuration
+
+Add this code
+```javascript
+exports.handler = async (event) => {
+    const response = {
+        statusCode: 200,
+        body: (Math.floor(Math.random() * 100000) + 1)
+    };
+    return response;
+};
+```
+
+### Create API
+
+Go to API Gateway and create a REST API
+
+- Protocol: REST
+- Create new API: New API
+- Settings
+  - API name: My Random Number API
+- Create Method: GET
+- Lambda Function: myRandomNumber
+- Test the call
+- Go to the API > Authorizer > Create New Authorizer
+  - Name: MyCustom
+  - Type: Cognito
+  - Cognito User Pool: Name of the user pool created
+  - Token Source: Authorization
+  - After creating just test using the id_token from the callback page
+- Click on GET, than Method Request
+- Authorization click on edit and select MyCustom
+- Click on Actions, than deploy
+
+**Attention:** Is it necessary to create the method OPTIONS and set the CORS properties on both API of GET/OPTIONS
+
+```javascript
+Access-Control-Allow-Headers: *
+Access-Control-Allow-Methods: *
+Access-Control-Allow-Origin: *
+```
+
 ## Running this code
 
 ```javascript
