@@ -6,13 +6,16 @@ import {
 } from 'react-router-dom'
 import { Home } from './Home'
 import { Users } from './Users'
-
+import { Callback } from './Callback'
 function App () {
   return (
     <Router>
       <Switch>
         <Route path='/users'>
           <Users />
+        </Route>
+        <Route path='/callback'>
+          <Callback />>
         </Route>
         <Route path='/'>
           <Home />
