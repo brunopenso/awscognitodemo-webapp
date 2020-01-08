@@ -1,6 +1,6 @@
 # Meetup Cognito Demo - Web App
 
-This branch 'SimpleTestEmailOnly' use the configuration in mode RAW using an external screen to login, where the user and password are stored in Amazon Cognito.
+This branch 'SimpleTestEmailOnly' use the external screen provided by AWS Cognito for the login function, where the user and password are stored in Amazon Cognito, with other Identity Providers like Facebook and Google.
 
 ## Setup cognito
 
@@ -9,9 +9,11 @@ Access the AWS console and create a new user pool, follow the steps bellow to se
 *Only the questions that I changed the default option is described bellow.*
 
 - How do you want your end users to sign in?
-  - Email address or phone number and Allow email addresses
+  - Email address or phone number
+  - Allow email addresses
 - Which standard attributes are required?
-  - email and name
+  - email
+  - name
 - How will a user be able to recover their account?
   - Email only
 - Which attributes do you want to verify?
@@ -30,7 +32,7 @@ After saving the user pool, come back to the APP Integration menu.
 - Sign out URL(s): http://localhost:3000/signout
 - Allowed OAuth Flows: Authorization code grant
 - Allowed OAuth Scopes: email, openid, profile
-- Create a domain name
+- Create a domain name (in the real world scenario the domain will be something like auth.yourproduct.com)
 
 ## Running this code
 
