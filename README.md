@@ -18,4 +18,4 @@ Summary: Used the master branch with code customization to add the cognito web l
 
 Branch: SimpleTestEmailFacebook
 
-Summary: Used the SimpleTestEmailOnly as base to add google and facebook authentication. You can compare both branch and see that there aren`t any code changes. It is juts a matter of configuration on the cognito.
+Summary: Used the SimpleTestEmailOnly as base to add google and facebook authentication. You can compare both branch and see that there aren`t any code changes. It is just a matter of doing some configuration on Cognito, Facebook and Google.
