@@ -34,6 +34,7 @@ After saving the user pool, come back to the APP Integration menu.
 
 On the Federation, let`s setup the facebook/google authenticator
 
+### Facebook
 - Access https://developers.facebook.com/
 - Create a application
 - Go to Cognito, Identity Provider and click on facebook
@@ -46,6 +47,24 @@ On the Federation, let`s setup the facebook/google authenticator
 - Go to Configuration > Application Domain and add the auth url of cognito <userpool_domainname>.auth.us-east-1.amazoncognito.com
 - Go to Product > FacebookLogin > Configuration > Redirect URL > https://<userpool_domainname>.auth.us-east-1.amazoncognito.com/oauth2/idpresponse
 - Go back to App client settings and check Facebook as identity provider
+
+### Google
+
+- Go to https://console.developers.google.com/
+- Create a new project
+- Menu > APIs & Services > consent screen
+  - Fill Name 
+  - Authorize Domain with <userpool_domainname>.auth.us-east-1.amazoncognito.com
+  - Save
+- Menu > APIs & Services > Credentials > + Create Credentials OAuth client ID
+  - Web application
+  - Fill the Name
+  - Save
+- Back to cognito, create the google identity provider, fill clientId and secret and scope(profile email openid).
+- Hit Enable google
+- Go to attribute mapping and do the same as the Facebook
+- Go to App Client Settings and enable google as a identity provider
+ 
 
 ## Running this code
 
