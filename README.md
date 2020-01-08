@@ -32,6 +32,20 @@ After saving the user pool, come back to the APP Integration menu.
 - Allowed OAuth Scopes: email, openid, profile
 - Create a domain name
 
+On the Federation, let`s setup the facebook/google authenticator
+
+- Access https://developers.facebook.com/
+- Create a application
+- Go to Cognito, Identity Provider and click on facebook
+- Inform the clientId, clientSecret and in Authorize scope inform "public_profile, email""
+- Go to attribute mapping:
+  - Check email and map to Email
+  - Check first_name and map to Name
+- Save changes
+- Go to Configuration > Application Domain and add the auth url of cognito <userpool_domainname>.auth.us-east-1.amazoncognito.com
+- Go to Product > FacebookLogin > Configuration > Redirect URL > https://<userpool_domainname>.auth.us-east-1.amazoncognito.com/oauth2/idpresponse
+- Go back to App client settings and check Facebook as identity provider
+
 ## Running this code
 
 ```javascript
