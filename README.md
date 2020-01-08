@@ -1,6 +1,6 @@
 # Meetup Cognito Demo - Web App
 
-This branch 'SimpleTestEmailOnly' use the configuration in mode RAW using an external screen to login, where the user and password are stored in Amazon Cognito.
+This branch 'SimpleTestEmailFacebook' use the configuration in mode RAW using an external screen to login, where the user and password are stored in Amazon Cognito, with other Identity Providers like Facebook and Google.
 
 ## Setup cognito
 
