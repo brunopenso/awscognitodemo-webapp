@@ -105,6 +105,32 @@ Go to API Gateway and create a REST API
 
 **Attention:** Is it necessary to create the method OPTIONS and set the CORS properties on both API of GET/OPTIONS
 
+## Create S3 access
+
+To use the S3 API directly you will need to create a bucked.
+
+Create a new bucket with *block all public access* options.
+
+**Changes to Cognito**
+
+- Create a new Identity Pool
+  - Name: <samenameofuserpoll>IdentityPool
+  - Authentication providers
+    - Inform the UserPoolId
+    - Inform the ApplicationId
+  - Create pool
+  - Create a new Role with S3Access on the name. e.g: Cognito_SimpleTestEmailOnlyIdentityPoolAuth_S3Access_Role
+    - The AWS console will ask to create two roles
+- Go the IAM console
+  - Search the role that have PoolAuth on the name
+  - Attach a policy to AmazonS3ReadOnlyAccess
+
+// Initialize the Amazon Cognito credentials provider
+AWS.config.region = 'us-east-1'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-east-1:006f7d0c-c645-43c6-bf6d-f0381fbe823c',
+});
+
 ```javascript
 Access-Control-Allow-Headers: *
 Access-Control-Allow-Methods: *
@@ -130,3 +156,8 @@ Start
 ```javascript
 npm start
 ```
+
+After login you can check the button:
+
+- *Click to call an API* will call an API from the API Gateway using the idToken
+- *Click to call S3* wil call an API from the S3 to count the number of files that exists on the bucket
