@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import qs from 'qs'
 import AWS from 'aws-sdk'
 import './index.css'
 import ls from 'local-storage'
@@ -18,7 +17,7 @@ export function Result () {
     setRefreshToken(ls.get('refreshtoken'))
   }, [])
 
-  function callS3 () {
+  function getCredencials () {
     setS3CallBody('clicked - wait - getting results')
 
     const url = 'cognito-idp.us-east-1.amazonaws.com/' + process.env.REACT_APP_AWS_USERPOOL_ID
@@ -30,17 +29,23 @@ export function Result () {
     }
 
     const creds = new AWS.CognitoIdentityCredentials(params)
-    AWS.config.region = 'us-east-1'
+    AWS.config.region = process.env.REACT_APP_AWS_REGION
     AWS.config.credentials = creds
     creds.get((err) => {
       if (!err) {
-        console.log('returned without error') // <-- this gets called!!!
+        getS3Data()
       } else {
         console.log('returned with error') // <-- might get called if something is missing, anyways self-descriptive
         console.log(err)
       }
     })
+  }
 
+  function callS3 () {
+    getCredencials()
+  }
+
+  function getS3Data () {
     const params1 = {
       Bucket: process.env.REACT_APP_AWS_S3_BUCKET_NAME,
       MaxKeys: 2

@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import qs from 'qs'
 import './index.css'
 import ls from 'local-storage'
+import { useHistory } from 'react-router-dom'
 
-export function Callback ({ history }) {
+export function Callback () {
+  const history = useHistory()
+  const [error, setError] = useState('')
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     console.log(params.get('code'))
@@ -22,20 +26,22 @@ export function Callback ({ history }) {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       }
     })
-      .then(response => {
-        ls.set('idtoken', response.data.id_token)
-        ls.set('accesstoken', response.data.access_token)
-        ls.set('refreshtoken', response.data.refresh_token)
-      })
-      .catch(err => console.log(err))
-
-      history.push(`/result`)
+      .then(response => setData(response))
+      .catch(err => setError(JSON.stringify(err)))
   }, [])
+
+  function setData (response) {
+    ls.set('idtoken', response.data.id_token)
+    ls.set('accesstoken', response.data.access_token)
+    ls.set('refreshtoken', response.data.refresh_token)
+    history.push('/result')
+  }
 
   return (
     <div>
       <h2>This is the callback page</h2>
       <p>Loading token data...</p>
+      <h3>{error}</h3>
     </div>
   )
 }
