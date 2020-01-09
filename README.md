@@ -45,6 +45,6 @@ After running everything some aws resources will be created
 
 **Running**
 
-After executing the command amplify push a browser url will be open
+After executing the command *amplify push*, the CLI will open a browser with your application running
 
 After login you will see the JWT tokens
