@@ -127,12 +127,6 @@ Create a new bucket with *block all public access* options.
   - Search the role that have PoolAuth on the name
   - Attach a policy to AmazonS3ReadOnlyAccess
 
-// Initialize the Amazon Cognito credentials provider
-AWS.config.region = 'us-east-1'; // Region
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:006f7d0c-c645-43c6-bf6d-f0381fbe823c',
-});
-
 ```javascript
 Access-Control-Allow-Headers: *
 Access-Control-Allow-Methods: *
