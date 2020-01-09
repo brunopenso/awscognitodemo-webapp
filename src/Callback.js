@@ -95,28 +95,16 @@ export function Callback () {
   return (
     <div>
       <h2>This is the call back page</h2>
-      <p className='token'>ID token: {idToken}</p>
-      <p className='token'>ACCESS token: {accessToken}</p>
-      <p className='token'>REFRESH token: {refreshToken}</p>
+      <p className='token'><b>ID token:</b> {idToken}</p>
+      <p className='token'><b>ACCESS token:</b> {accessToken}</p>
+      <p className='token'><b>REFRESH token:</b> {refreshToken}</p>
+      <p className='token'>###</p>
       <button onClick={callApi}>Click to call an API</button>
       <p>Result from the button {apiCallBody}</p>
       <br />
       <br />
       <button onClick={callS3}>Click to call a S3 API</button>
       <p>Result from the button {s3CallBody}</p>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   )
 }
