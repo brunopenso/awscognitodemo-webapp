@@ -149,6 +149,9 @@ Create a file .env.development with this values:
 SKIP_PREFLIGHT_CHECK=true
 REACT_APP_AWS_COGNITO_CLIENT_ID=<id of the application associated to the user pool>
 REACT_APP_AWS_COGNITO_URL=<domain url of the application>
+REACT_APP_AWS_USERPOOL_ID=<name complete with the region + id>
+REACT_APP_AWS_IDENTITYPOOL_ID=<name complete with the region + id>
+REACT_APP_AWS_API_GATEWAY=<full url to execute the GET command on api gateway>
 ```
 
 Start
