@@ -2,6 +2,8 @@
 
 This branch 'SimpleTestEmailOnly' use the external screen provided by AWS Cognito for the login function, where the user and password are stored in Amazon Cognito, with other Identity Providers like Facebook and Google.
 
+**Disclaimer:** This code was not create to use on production environment, it just for learning Cognito.
+
 ## Setup cognito
 
 Access the AWS console and create a new user pool, follow the steps bellow to setup the cognito to work with this scenario.
