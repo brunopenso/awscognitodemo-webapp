@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import qs from 'qs'
+import './index.css'
 
 export function Callback () {
   const [idToken, setIdToken] = useState('')
@@ -36,9 +37,10 @@ export function Callback () {
   return (
     <div>
       <h2>This is the call back page</h2>
-      <h4>ID token: {idToken}</h4>
-      <h4>ACCESS token: {accessToken}</h4>
-      <h4>REFRESH token: {refreshToken}</h4>
+      <p className='token'><b>ID token:</b> {idToken}</p>
+      <p className='token'><b>ACCESS token:</b> {accessToken}</p>
+      <p className='token'><b>REFRESH token:</b> {refreshToken}</p>
+      <p className='token'>###</p>
     </div>
   )
 }
