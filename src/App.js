@@ -11,7 +11,7 @@ function App () {
     <Router>
       <Switch>
         <Route path='/callback'>
-          <Callback />>
+          <Callback />
         </Route>
         <Route path='/'>
           <Home />

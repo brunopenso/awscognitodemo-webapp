@@ -10,6 +10,7 @@ export function Callback () {
   const [refreshToken, setRefreshToken] = useState('')
   const [apiCallBody, setApiCallBody] = useState('click on the button above')
   const [s3CallBody, setS3CallBody] = useState('click on the button above')
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     console.log(params.get('code'))
@@ -52,12 +53,8 @@ export function Callback () {
     creds.get((err) => {
       if (!err) {
         console.log('returned without error') // <-- this gets called!!!
-        // and the values are correctly set!
-        var accessKeyId = AWS.config.credentials.accessKeyId
-        var secretAccessKey = AWS.config.credentials.secretAccessKey
-        var sessionToken = AWS.config.credentials.sessionToken
       } else {
-        console.log('returned with error') // <-- might get called if something is missing, anyways self-descriptive. 
+        console.log('returned with error') // <-- might get called if something is missing, anyways self-descriptive
         console.log(err)
       }
     })
