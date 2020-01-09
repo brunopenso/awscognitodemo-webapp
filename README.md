@@ -8,7 +8,7 @@ I used https://aws-amplify.github.io/docs/js/authentication to create everything
 
 Instructions for react: https://aws-amplify.github.io/docs/js/react
 
-**Disclaimer:** This code was not create to use on production environment, it just for learning Cognito.
+**Disclaimer:** This code was not create to use on production environment, it is just for learning AWS Cognito.
 
 ## How to run this code?
 
