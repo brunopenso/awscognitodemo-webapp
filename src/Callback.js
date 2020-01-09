@@ -14,7 +14,7 @@ export function Callback () {
 
     axios({
       method: 'post',
-      url: 'https://simpletestemailonly.auth.us-east-1.amazoncognito.com/oauth2/token',
+      url: 'https://' + process.env.REACT_APP_AWS_COGNITO_URL + '/oauth2/token',
       data: qs.stringify({
         grant_type: 'authorization_code',
         client_id: process.env.REACT_APP_AWS_COGNITO_CLIENT_ID,
