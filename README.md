@@ -6,7 +6,7 @@ On the branch **Master** you have the default code. The other branchs have the i
 
 Branch:amplify-basic-cli
 
-Summary: Used the Amplify framework to do all the stuff, from code to Amazon configuration.
+Summary: Used the Amplify framework to do all the stuff, from code to AWS configuration.
 
 ## Option 2
 
@@ -24,4 +24,4 @@ Summary: Used the SimpleTestEmailOnly as base to add google and facebook authent
 
 Branch: CallAwsResources
 
-Summary: Used the SimpleTestEmailFacebook as base to add information and code changes on how to get API from the API Gateway secure with the token generated and how to call a S3 API exchanging the cognito token to a AWS STS token
+Summary: Used the SimpleTestEmailFacebook as base to add more instructions and code changes on how to call APIs from the API Gateway in a secure way and how to call a S3 API exchanging the cognito token to a AWS STS token
