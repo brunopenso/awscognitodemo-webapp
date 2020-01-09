@@ -16,18 +16,18 @@ Summary: Used the Amplify framework to do all the stuff, from code to AWS config
 
 ## Step 1
 
-Branch: SimpleTestEmailOnly
+Branch: Step1_OnlyEmail
 
 Summary: Used the master branch with code customization to add the cognito web log in page. Only email accepted
 
 ## Step 2
 
-Branch: SimpleTestEmailFacebook
+Branch: Step2_AddSocialProviders
 
 Summary: Used the SimpleTestEmailOnly as base to add google and facebook authentication. You can compare both branch and see that there aren`t any code changes. It is just a matter of doing some configuration on Cognito, Facebook and Google.
 
 ## Step 3
 
-Branch: CallAwsResources
+Branch: Step3_CallAwsResources
 
 Summary: Used the SimpleTestEmailFacebook as base to add more instructions and code changes on how to call APIs from the API Gateway in a secure way and how to call a S3 API exchanging the cognito token to a AWS STS token
