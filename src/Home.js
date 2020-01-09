@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Auth } from 'aws-amplify'
+import './index.css'
 
 export function Home () {
   const [idToken, setIdToken] = useState('')
@@ -16,9 +17,9 @@ export function Home () {
   }, [])
   return (
     <div>
-      <h4>idToken: {idToken}</h4>
-      <h4>refreshToken: {refreshToken}</h4>
-      <h4>accessToken: {accessToken}</h4>
+      <p className='token'><b>ID token:</b> {idToken}</p>
+      <p className='token'><b>ACCESS token:</b> {accessToken}</p>
+      <p className='token'><b>REFRESH token:</b> {refreshToken}</p>
     </div>
   )
 }
