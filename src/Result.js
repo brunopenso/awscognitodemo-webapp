@@ -3,6 +3,7 @@ import axios from 'axios'
 import AWS from 'aws-sdk'
 import './index.css'
 import ls from 'local-storage'
+import qs from 'qs'
 
 export function Result () {
   const [idToken, setIdToken] = useState('')
@@ -12,18 +13,20 @@ export function Result () {
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    loadLocalStorage()
+  }, [])
+
+  function loadLocalStorage () {
     setIdToken(ls.get('idtoken'))
     setAccessToken(ls.get('accesstoken'))
     setRefreshToken(ls.get('refreshtoken'))
-  }, [])
-
+  }
   function cleanState () {
     setResult('starting...')
     setError(false)
   }
 
   function getCredencials () {
-
     const url = 'cognito-idp.us-east-1.amazonaws.com/' + process.env.REACT_APP_AWS_USERPOOL_ID
     const logins = {}
     logins[url] = idToken // <- the one obtained before
@@ -86,17 +89,38 @@ export function Result () {
         setError(true)
       })
   }
-
+  function callRefreshToken() {
+    axios({
+      method: 'post',
+      url: 'https://' + process.env.REACT_APP_AWS_COGNITO_URL + '/oauth2/token',
+      data: qs.stringify({
+        grant_type: 'refresh_token',
+        client_id: process.env.REACT_APP_AWS_COGNITO_CLIENT_ID,
+        refresh_token: refreshToken
+      }),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
+    })
+      .then(response => {
+        ls.set('idtoken', response.data.id_token)
+        ls.set('accesstoken', response.data.access_token)
+        loadLocalStorage()
+      })
+      .catch(err => setError(JSON.stringify(err)))
+  }
   return (
     <div>
       <h3>Click on the buttons bellow</h3>
       <div>
         <button onClick={callApiGateway}>Click to call an API</button>
         <button onClick={callS3}>Click to call a S3 API</button>
+        <button onClick={callRefreshToken}>Click to refresh token</button>
       </div>
       <div className={error ? 'error' : (result.length > 0 ? 'result' : 'hide')}>
         Here is the result of the action: {result}
       </div>
+      <br />
       <br />
       <p className='token'><b>ID token:</b> {idToken}</p>
       <p className='token'><b>ACCESS token:</b> {accessToken}</p>
