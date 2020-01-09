@@ -9,7 +9,8 @@ This branch 'SimpleTestEmailFacebook' use the external screen provided by AWS Co
 Access the AWS console and create a new user pool, follow the steps bellow to setup the cognito to work with this scenario.
 
 *Only the questions that I changed the default option is described bellow.*
-
+- Pool Name: MeetUpAwsDemo
+- Click Step throught settings
 - How do you want your end users to sign in?
   - Email address or phone number
   - Allow email addresses
@@ -25,7 +26,7 @@ Access the AWS console and create a new user pool, follow the steps bellow to se
   - Always
 - Create an Application
   - Set a name
-  - **Uncheck generate CLient Secret**
+  - **Uncheck generate Client Secret**
 
 After saving the user pool, come back to the APP Integration menu.
 
@@ -35,6 +36,7 @@ After saving the user pool, come back to the APP Integration menu.
 - Allowed OAuth Flows: Authorization code grant
 - Allowed OAuth Scopes: email, openid, profile
 - Create a domain name (in the real world scenario the domain will be something like auth.yourproduct.com)
+- Go to UI customization and upload the logo.png file in this project
 
 On the Federation, let`s setup the facebook/google authenticator
 
@@ -55,23 +57,28 @@ On the Federation, let`s setup the facebook/google authenticator
 
 - Go to https://console.developers.google.com/
   - Create a new project
-  - Menu > APIs & Services > consent screen
+    - Name: AwsMeetupDemo
+  - Menu > APIs & Services > **OAuth consent screen**
+    - Select the Project
+    - Mask as external
     - Fill Name 
     - Authorize Domain with <userpool_domainname>.auth.us-east-1.amazoncognito.com
     - Save
-  - Menu > APIs & Services > Credentials > + Create Credentials OAuth client ID
+  - Menu > APIs & Services > Credentials > + Create Credentials > OAuth client ID
     - Web application
     - Fill the Name
     - Save
-  - Select the application name and add Authorized redirect URIs with the value https://<userpool_domainname>.auth.us-east-1.amazoncognito.com/oauth2/idpresponse
   - Back to cognito, create the google identity provider, fill clientId and secret and scope(profile email openid).
   - Hit Enable google
   - Go to attribute mapping and do the same as the Facebook
   - Go to App Client Settings and enable google as a identity provider
+  - Go back to google
+    - Edit the application on the OAuth 2.0 Client Id
+    - Add Authorized redirect URIs with the value https://<userpool_domainname>.auth.us-east-1.amazoncognito.com/oauth2/idpresponse
 
 ### Create a lambda code
 
-Go to the AWS Console and Create a lambda with name myRandomNumber with all default configuration
+Go to the AWS Console and Create a lambda with name **myRandomNumber** with all default configuration
 
 Add this code
 ```javascript
@@ -86,7 +93,7 @@ exports.handler = async (event) => {
 
 ### Create API
 
-Go to API Gateway and create a REST API
+Go to API Gateway and Build a REST API
 
 - Protocol: REST
 - Create new API: New API
@@ -100,18 +107,25 @@ Go to API Gateway and create a REST API
   - Type: Cognito
   - Cognito User Pool: Name of the user pool created
   - Token Source: Authorization
-  - After creating just test using the id_token from the callback page
-- Click on GET, than Method Request
-- Authorization click on edit and select MyCustom
+- Go back to the resources and click on GET, than Method Request
+- In the Authorization change to *MyCustom*
+  - Hint: If MyCustom is missing, refresh the page
+  - DO NOT forget to click on the check button on the right side to save
 - Click on Actions, than deploy
 
 **Attention:** Is it necessary to create the method OPTIONS and set the CORS properties on both API of GET/OPTIONS
+
+```javascript
+Access-Control-Allow-Headers: *
+Access-Control-Allow-Methods: *
+Access-Control-Allow-Origin: *
+```
 
 ## Create S3 access
 
 To use the S3 API directly you will need to create a bucked.
 
-Create a new bucket with *block all public access* options.
+Create a new bucket with *block all public access* options and upload any file to it.
 
 **Changes to Cognito**
 
@@ -121,16 +135,24 @@ Create a new bucket with *block all public access* options.
     - Inform the UserPoolId
     - Inform the ApplicationId
   - Create pool
-  - Create a new Role with S3Access on the name. e.g: Cognito_SimpleTestEmailOnlyIdentityPoolAuth_S3Access_Role
+  - Create a new Role with S3Access on the name. e.g: Cognito_SimpleTestEmailOnlyIdentityPoolAuth_Role
     - The AWS console will ask to create two roles
 - Go the IAM console
   - Search the role that have PoolAuth on the name
   - Attach a policy to AmazonS3ReadOnlyAccess
+- Go back to S3
+  - Select the bucket
+  - Go to Permissions > CORS Configuration
+  - Add this code
 
-```javascript
-Access-Control-Allow-Headers: *
-Access-Control-Allow-Methods: *
-Access-Control-Allow-Origin: *
+```xml
+<CORSConfiguration>
+ <CORSRule>
+   <AllowedOrigin>*</AllowedOrigin>
+   <AllowedMethod>GET</AllowedMethod>
+   <AllowedHeader>*</AllowedHeader>
+ </CORSRule>
+</CORSConfiguration>
 ```
 
 ## Running this code
@@ -146,8 +168,9 @@ SKIP_PREFLIGHT_CHECK=true
 REACT_APP_AWS_COGNITO_CLIENT_ID=<id of the application associated to the user pool>
 REACT_APP_AWS_COGNITO_URL=<domain url of the application>
 REACT_APP_AWS_USERPOOL_ID=<name complete with the region + id>
-REACT_APP_AWS_IDENTITYPOOL_ID=<name complete with the region + id>
+REACT_APP_AWS_IDENTITYPOOL_ID=<name complete with the region + id, you get this on the sample code menu>
 REACT_APP_AWS_API_GATEWAY=<full url to execute the GET command on api gateway>
+REACT_APP_AWS_S3_BUCKET_NAME=<name of the bucket on AWS>
 ```
 
 Start

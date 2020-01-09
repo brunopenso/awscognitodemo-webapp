@@ -63,7 +63,7 @@ export function Callback () {
     })
 
     const params1 = {
-      Bucket: 'simplescognitotest',
+      Bucket: process.env.REACT_APP_AWS_S3_BUCKET_NAME,
       MaxKeys: 2
     }
 
