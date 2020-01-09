@@ -19,3 +19,9 @@ Summary: Used the master branch with code customization to add the cognito web l
 Branch: SimpleTestEmailFacebook
 
 Summary: Used the SimpleTestEmailOnly as base to add google and facebook authentication. You can compare both branch and see that there aren`t any code changes. It is just a matter of doing some configuration on Cognito, Facebook and Google.
+
+## Option 4
+
+Branch: CallAwsResources
+
+Summary: Used the SimpleTestEmailFacebook as base to add information and code changes on how to get API from the API Gateway secure with the token generated and how to call a S3 API exchanging the cognito token to a AWS STS token
