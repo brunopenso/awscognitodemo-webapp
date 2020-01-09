@@ -1,6 +1,6 @@
 # Meetup Cognito Demo - Web App
 
-This branch 'SimpleTestEmailOnly' use the external screen provided by AWS Cognito for the login function, where the user and password are stored in Amazon Cognito, with other Identity Providers like Facebook and Google.
+This branch 'Step1_OnlyEmail' use the external screen provided by AWS Cognito for the login function, where the user and password are stored in Amazon Cognito, with other Identity Providers like Facebook and Google.
 
 **Disclaimer:** This code was not create to use on production environment, it is just for learning AWS Cognito.
 
