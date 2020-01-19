@@ -41,7 +41,7 @@ export function PasswordlessAuth () {
       .then(response => {
         setResponse(JSON.stringify(response.data))
       })
-      .catch(err => setResponse(JSON.stringify(err)))
+      .catch(err => setResponse(JSON.stringify(err.response.data)))
   }
   function requestChallenge () {
     setResponse('loading....')
@@ -69,7 +69,7 @@ export function PasswordlessAuth () {
         setResponse(JSON.stringify(response.data))
         setSession(response.data.Session)
       })
-      .catch(err => setResponse(JSON.stringify(err)))
+      .catch(err => setResponse(JSON.stringify(err.response.data)))
   }
   function makeChallenge () {
     setResponse('loading....')
@@ -100,7 +100,7 @@ export function PasswordlessAuth () {
         ls.set('refreshtoken', response.data.AuthenticationResult.RefreshToken)
         history.push('/result')
       })
-      .catch(err => setResponse(JSON.stringify(err)))
+      .catch(err => setResponse(JSON.stringify(err.response.data)))
   }
   return (
     <div>
@@ -114,7 +114,7 @@ export function PasswordlessAuth () {
         <button onClick={makeChallenge}>Make challenge</button>
       </div>
       <br />
-      <p>{response}</p>
+      <div>{JSON.stringify(response, null, 2)}</div>
     </div>
   )
 }
