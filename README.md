@@ -176,8 +176,6 @@ REACT_APP_AWS_USERPOOL_ID=<name complete with the region + id>
 REACT_APP_AWS_IDENTITYPOOL_ID=<name complete with the region + id, you get this on the sample code menu>
 REACT_APP_AWS_API_GATEWAY=<full url to execute the GET command on api gateway>
 REACT_APP_AWS_S3_BUCKET_NAME=<name of the bucket on AWS>
-#need for the passwordless flow
-REACT_APP_AWS_PLA_CLIENT_ID=<id of the application associated to the user pool>
 REACT_APP_AWS_PLA_URL=cognito-idp.<region>.amazonaws.com
 ```
 

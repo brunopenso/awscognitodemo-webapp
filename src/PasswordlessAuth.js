@@ -22,7 +22,7 @@ export function PasswordlessAuth () {
       method: 'post',
       url: 'https://' + process.env.REACT_APP_AWS_PLA_URL,
       data: {
-        ClientId: process.env.REACT_APP_AWS_PLA_CLIENT_ID,
+        ClientId: process.env.REACT_APP_AWS_COGNITO_CLIENT_ID,
         Username: email,
         Password: 'c00f814cf24b92e48e555977b75f54857540d42aa47316f0bf21c16e65d9',
         UserAttributes:
@@ -54,7 +54,7 @@ export function PasswordlessAuth () {
       url: 'https://' + process.env.REACT_APP_AWS_PLA_URL,
       data: {
         AuthFlow: 'CUSTOM_AUTH',
-        ClientId: process.env.REACT_APP_AWS_PLA_CLIENT_ID,
+        ClientId: process.env.REACT_APP_AWS_COGNITO_CLIENT_ID,
         AuthParameters:
           {
             USERNAME: email
@@ -87,7 +87,7 @@ export function PasswordlessAuth () {
             USERNAME: email,
             ANSWER: code
           },
-        ClientId: process.env.REACT_APP_AWS_PLA_CLIENT_ID,
+        ClientId: process.env.REACT_APP_AWS_COGNITO_CLIENT_ID,
         Session: session
       },
       headers: {
