@@ -1,6 +1,6 @@
 # Meetup Cognito Demo - Web App
 
-This branch 'Step3_CallAwsResources' use the external screen provided by AWS Cognito for the login function, where the user and password are stored in Amazon Cognito, with other Identity Providers like Facebook and Google.
+This branch 'Step4_Passwordless' use the external screen provided by AWS Cognito for the login function, where the user and password are stored in Amazon Cognito, with other Identity Providers like Facebook and Google and an option to use the **Passwordless flow**
 
 **Disclaimer:** This code was not create to use on production environment, it is just for learning AWS Cognito.
 
@@ -154,6 +154,8 @@ Create a new bucket with *block all public access* options and upload any file t
  </CORSRule>
 </CORSConfiguration>
 ```
+
+## Configure for password less flow
 
 ## Running this code
 

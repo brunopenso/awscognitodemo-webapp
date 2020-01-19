@@ -7,6 +7,8 @@ export function Home () {
     <div>
       <h2>Public page</h2>
       <p>Click <a href={url}>here</a> to login</p>
+      <br />
+      <p>Click <a href='/passwordlessAuth'>here</a> to a passwordless flow</p>
     </div>
   )
 }

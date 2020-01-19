@@ -7,6 +7,7 @@ import {
 import { Home } from './Home'
 import { Callback } from './Callback'
 import { Result } from './Result'
+import { PasswordlessAuth } from './PasswordlessAuth'
 
 function App () {
   return (
@@ -17,6 +18,9 @@ function App () {
         </Route>
         <Route path='/result'>
           <Result />
+        </Route>
+        <Route path='/passwordlessAuth'>
+          <PasswordlessAuth />
         </Route>
         <Route path='/'>
           <Home />
