@@ -99,10 +99,15 @@ export function PasswordlessAuth () {
       }
     })
       .then(response => {
-        ls.set('idtoken', response.data.AuthenticationResult.IdToken)
-        ls.set('accesstoken', response.data.AuthenticationResult.AccessToken)
-        ls.set('refreshtoken', response.data.AuthenticationResult.RefreshToken)
-        history.push('/result')
+        if (response.data.Session) {
+          setSession(response.data.Session)
+          setResponse('invalid code')
+        } else {
+          ls.set('idtoken', response.data.AuthenticationResult.IdToken)
+          ls.set('accesstoken', response.data.AuthenticationResult.AccessToken)
+          ls.set('refreshtoken', response.data.AuthenticationResult.RefreshToken)
+          history.push('/result')
+        }
       })
       .catch(err => setResponse(JSON.stringify(err.response.data)))
   }
