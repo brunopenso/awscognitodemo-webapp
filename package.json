@@ -5,6 +5,7 @@
   "dependencies": {
     "aws-sdk": "^2.600.0",
     "axios": "^0.19.1",
+    "local-storage": "^2.0.0",
     "qs": "^6.9.1",
     "query-string": "^6.9.0",
     "react": "^16.12.0",

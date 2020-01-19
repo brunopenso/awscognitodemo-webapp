@@ -6,6 +6,26 @@ body {
   font-size: medium;
 }
 
+button {
+  margin-right: 5px;
+  font-weight: bold;
+  font-size: medium;
+}
+
 .token {
   font-size: smaller;
+}
+
+.hide {
+  display:none
+}
+
+.result {
+  margin-top: 10px;
+  background-color: lightgreen;
+}
+
+.error {
+  margin-top:10px;
+  background-color: lightpink;
 }
