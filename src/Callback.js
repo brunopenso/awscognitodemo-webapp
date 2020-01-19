@@ -10,6 +10,7 @@ export function Callback () {
   const [error, setError] = useState('')
 
   useEffect(() => {
+    ls.clear()
     const params = new URLSearchParams(window.location.search)
     console.log(params.get('code'))
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './index.css'
 import { useHistory } from 'react-router-dom'
@@ -11,6 +11,10 @@ export function PasswordlessAuth () {
   const [response, setResponse] = useState('')
   const [session, setSession] = useState('')
   const [code, setCode] = useState('')
+
+  useEffect(() => {
+    ls.clear()
+  }, [])
 
   function createUser () {
     setResponse('loading....')

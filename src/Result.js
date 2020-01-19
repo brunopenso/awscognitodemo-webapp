@@ -4,8 +4,10 @@ import AWS from 'aws-sdk'
 import './index.css'
 import ls from 'local-storage'
 import qs from 'qs'
+import { useHistory } from 'react-router-dom'
 
 export function Result () {
+  const history = useHistory()
   const [idToken, setIdToken] = useState('')
   const [accessToken, setAccessToken] = useState('')
   const [refreshToken, setRefreshToken] = useState('')
@@ -89,7 +91,8 @@ export function Result () {
         setError(true)
       })
   }
-  function callRefreshToken() {
+  function callRefreshToken () {
+    cleanState()
     axios({
       method: 'post',
       url: 'https://' + process.env.REACT_APP_AWS_COGNITO_URL + '/oauth2/token',
@@ -106,8 +109,44 @@ export function Result () {
         ls.set('idtoken', response.data.id_token)
         ls.set('accesstoken', response.data.access_token)
         loadLocalStorage()
+        setResult('done')
       })
       .catch(err => setError(JSON.stringify(err)))
+  }
+  function callRefreshTokenPLA () {
+    cleanState()
+    axios({
+      method: 'post',
+      url: 'https://' + process.env.REACT_APP_AWS_PLA_URL,
+      data: {
+        AuthFlow: 'REFRESH_TOKEN',
+        ClientId: process.env.REACT_APP_AWS_PLA_CLIENT_ID,
+        AuthParameters:
+          {
+            REFRESH_TOKEN: refreshToken
+          },
+        ClientMetadata: {}
+      },
+      headers: {
+        'Content-Type': 'application/x-amz-json-1.1',
+        authority: 'cognito-idp.us-east-1.amazonaws.com',
+        // 'sec-fetch-mode': 'cors',
+        // 'sec-fetch-site': 'cross-site',
+        'x-amz-target': 'AWSCognitoIdentityProviderService.InitiateAuth'
+      }
+    })
+      .then(response => {
+        ls.set('idtoken', response.data.AuthenticationResult.IdToken)
+        ls.set('accesstoken', response.data.AuthenticationResult.AccessToken)
+        loadLocalStorage()
+        setResult('done')
+      })
+      .catch(err => setError(JSON.stringify(err)))
+  }
+
+  function logoff () {
+    ls.clear()
+    history.push('/')
   }
   return (
     <div>
@@ -116,6 +155,9 @@ export function Result () {
         <button onClick={callApiGateway}>Click to call an API</button>
         <button onClick={callS3}>Click to call a S3 API</button>
         <button onClick={callRefreshToken}>Click to refresh token</button>
+        <br /><br />
+        <button onClick={callRefreshTokenPLA}>Click to refresh token PASSWORDLESS Option</button>
+        <button onClick={logoff}>Logoff</button>
       </div>
       <div className={error ? 'error' : (result.length > 0 ? 'result' : 'hide')}>
         Here is the result of the action: {result}

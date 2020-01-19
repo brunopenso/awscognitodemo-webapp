@@ -162,7 +162,9 @@ https://aws.amazon.com/blogs/mobile/implementing-passwordless-email-authenticati
 
 Import the code using the cloudform stack option and get it working.
 
-The only thing you need to do is go to the Amazon SES and verify the FROM e TO email of your tests
+After steps:
+- Go to the Amazon SES and verify the FROM e TO email of your tests
+- After you deploy the cloud formation will create a new user pool, so go back to your user pool and setup the lambda triggers to make it work all integrated
 
 And go to the environment file and create the entries.
 
