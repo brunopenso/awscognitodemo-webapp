@@ -4,19 +4,27 @@ This branch 'Step4_Passwordless' use the external screen provided by AWS Cognito
 
 **Disclaimer:** This code was not create to use on production environment, it is just for learning AWS Cognito.
 
+**Disclaimer 2:** Each branch of this project were created to show the evolution of the code and configuration between each steps. For the passwordless flow the things are a little bit different because we need to use the cloud formation from AWS to create the resources. So the resources created on the other branches should be delete.
+
 ## Setup cognito
 
-Access the AWS console and create a new user pool, follow the steps bellow to setup the cognito to work with this scenario.
+**Configure for password less flow**
+
+I followed this article is very straight forward.
+https://aws.amazon.com/blogs/mobile/implementing-passwordless-email-authentication-with-amazon-cognito/
+
+Import the code using the cloudform stack option and get it working.
+
+After steps:
+
+- Go to the Amazon SES and verify the FROM e TO email of your tests
+- After you deploy the cloud formation will create a new user pool, so go back to your user pool and setup the lambda triggers to make it work all integrated
+
+Now that you have a user pool configured continue with the steps bellow.
+
+**Setup cognito with other configurations**
 
 *Only the questions that I changed the default option is described bellow.*
-- Pool Name: MeetUpAwsDemo
-- Click Step throught settings
-- How do you want your end users to sign in?
-  - Email address or phone number
-  - Allow email addresses
-- Which standard attributes are required?
-  - email
-  - name
 - How will a user be able to recover their account?
   - Email only
 - Which attributes do you want to verify?
@@ -24,9 +32,6 @@ Access the AWS console and create a new user pool, follow the steps bellow to se
 - DO NOT create SMS role
 - Do you want to remember your user's devices?
   - Always
-- Create an Application
-  - Set a name
-  - **Uncheck generate Client Secret**
 
 After saving the user pool, come back to the APP Integration menu.
 
@@ -154,19 +159,6 @@ Create a new bucket with *block all public access* options and upload any file t
  </CORSRule>
 </CORSConfiguration>
 ```
-
-## Configure for password less flow
-
-I followed this article is very straight forward.
-https://aws.amazon.com/blogs/mobile/implementing-passwordless-email-authentication-with-amazon-cognito/
-
-Import the code using the cloudform stack option and get it working.
-
-After steps:
-- Go to the Amazon SES and verify the FROM e TO email of your tests
-- After you deploy the cloud formation will create a new user pool, so go back to your user pool and setup the lambda triggers to make it work all integrated
-
-And go to the environment file and create the entries.
 
 ## Running this code
 
