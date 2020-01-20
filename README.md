@@ -2,12 +2,7 @@
 
 **Disclaimer:** This code was not create to use on production environment, it is just for learning AWS Cognito.
 
-Below are the steps that I executed to achieve all the functionalities. To see the code with everything working, you can see the branch **Step3_CallAwsResources** and you can see on branch **Step4_PasswordLess** the additional config for using passwordless authentication.
-
-Here is the presentation with some more information:
-
-- [Portuguese](MeetupCognito_PT.pdf)
-- [English](MeetupCognito_EN.pdf)
+Below are the steps that I executed to achieve all the functionalities. To see the code with everything you can see the branch **CallAwsResources**
 
 ## AWS Amplify
 
