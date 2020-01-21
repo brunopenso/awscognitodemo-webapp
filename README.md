@@ -17,8 +17,7 @@ Import the code using the cloudform stack option and get it working.
 
 After steps:
 
-- Go to the Amazon SES and verify the FROM e TO email of your tests
-- After you deploy the cloud formation will create a new user pool, so go back to your user pool and setup the lambda triggers to make it work all integrated
+- Go to the Amazon SES and verify the FROM and TO email of your tests
 
 Now that you have a user pool configured continue with the steps bellow.
 
@@ -28,10 +27,13 @@ Now that you have a user pool configured continue with the steps bellow.
 - How will a user be able to recover their account?
   - Email only
 - Which attributes do you want to verify?
-  - Email
+  - Email or No verification
 - DO NOT create SMS role
 - Do you want to remember your user's devices?
-  - Always
+  - **No**
+  - Always ( This code doesn`t support this flow, because when Always is marked you need to inform the device id on the Oauth refresh flow. More information: https://aws.amazon.com/blogs/mobile/tracking-and-remembering-devices-using-amazon-cognito-your-user-pools/)
+- Do you want to customize your email address?
+  - FROM email address ARN: Add the FROM email that you verified
 
 After saving the user pool, come back to the APP Integration menu.
 
@@ -140,10 +142,9 @@ Create a new bucket with *block all public access* options and upload any file t
     - Inform the UserPoolId
     - Inform the ApplicationId
   - Create pool
-  - Create a new Role with S3Access on the name. e.g: Cognito_SimpleTestEmailOnlyIdentityPoolAuth_Role
-    - The AWS console will ask to create two roles
+  - The AWS console will ask to create two roles
 - Go the IAM console
-  - Search the role that have PoolAuth on the name
+  - Search the role that have Auth on the name
   - Attach a policy to AmazonS3ReadOnlyAccess
 - Go back to S3
   - Select the bucket
